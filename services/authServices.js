@@ -85,3 +85,17 @@ export const updatePasswordDB = async (_id, password) => {
 
   return;
 };
+
+export const restorePasswordDB = async (otp, newPassword, email) => {
+  const user = await emailUnique(email);
+  if (!user) throw HttpError(400, "Token is invalid");
+
+  await user.comparePasswordResetToken(otp);
+
+  const hashedPassword = await bcryptjs.hash(newPassword, 10);
+  user.password = hashedPassword;
+  user.passwordResetToken = undefined;
+  user.passwordResetTokenExp = undefined;
+
+  await user.save();
+};

@@ -15,12 +15,12 @@ const userSchema = new Schema(
       reqired: [true, "Set name for user"],
     },
     birthDate: {
-      type: Date,
-      required: [true, "Set birth date for user"],
-      validate: {
-        validator: validateBirthDate,
-        message: "Birth date cannot be in the future",
-      },
+      type: String,
+      // required: [true, "Set birth date for user"],
+      // validate: {
+      //   validator: validateBirthDate,
+      //   message: "Birth date cannot be in the future",
+      // },
     },
     email: {
       type: String,

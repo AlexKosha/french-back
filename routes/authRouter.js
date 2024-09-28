@@ -43,4 +43,12 @@ authRouter.patch(
   authControllers.updateUserTheme
 );
 
+// otp = one time password
+authRouter.post(
+  "/restorePassword/:otp",
+  validateBody(userSchema.restorePassword),
+  authControllers.restorePassword
+);
+
+authRouter.post("/forgotPassword", authControllers.forgotPassword);
 export default authRouter;

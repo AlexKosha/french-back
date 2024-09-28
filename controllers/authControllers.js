@@ -1,5 +1,6 @@
 import * as authServices from "../services/authServices.js";
 import { ctrlWrapper, HttpError } from "../helpers/index.js";
+import { sendEmail } from "../helpers/sendEmail.js";
 
 export const registerUser = ctrlWrapper(async (req, res) => {
   const { name, email, birthDate } = req.body;
@@ -66,21 +67,30 @@ export const logoutUser = ctrlWrapper(async (req, res) => {
 
 export const updateUser = ctrlWrapper(async (req, res) => {
   const { _id } = req.user;
-
+  // Перевірка наявності даних користувача в запиті
   if (req.body) {
-    const updateUser = await authServices.updateUserDB(_id, {
-      name: req.body.name,
-      email: req.body.email,
-    });
-
-    const { name, email, birthDate } = updateUser;
-
-    res.status(200).json({
+    const { name, email } = req.body;
+    const updatedUser = await authServices.updateUserDB(_id, {
       name,
       email,
-      birthDate,
     });
+    res.status(200).json(updatedUser);
   }
+
+  // if (req.body) {
+  //   const updateUser = await authServices.updateUserDB(_id, {
+  //     name: req.body.name,
+  //     email: req.body.email,
+  //   });
+
+  //   const { name, email, birthDate } = updateUser;
+
+  //   res.status(200).json({
+  //     name,
+  //     email,
+  //     birthDate,
+  //   });
+  // }
 });
 
 export const updateUserTheme = ctrlWrapper(async (req, res) => {
@@ -110,6 +120,53 @@ export const updatePassword = ctrlWrapper(async (req, res) => {
   await authServices.updatePasswordDB(_id, newPassword);
 
   res.status(200).json({ message: "Password has been updated" });
+});
+
+export const restorePassword = ctrlWrapper(async (req, res) => {
+  await authServices.restorePasswordDB(
+    req.params.otp,
+    req.body.password,
+    req.body.email
+  );
+
+  res.status(200).json({ message: "Password was successfully created" });
+});
+
+export const forgotPassword = ctrlWrapper(async (req, res) => {
+  const { email } = req.body;
+
+  const user = await authServices.emailUnique(email);
+
+  if (!user) {
+    throw HttpError(400, "User not exist");
+  }
+
+  const otp = user.createPasswordResetToken();
+  await user.save();
+
+  const verifyEmail = {
+    to: user,
+    subject: "Your one time password",
+    html: `
+    <p>Вітаємо! Ваш код:</p>
+    <p>${otp}</p>
+    <p>Якщо ви не робили запит на відновлення паролю, проігноруйте це повідомлення.</p>
+    <p>Дякуємо, що користуєтеся нашим додатком!</p>
+    <p>З повагою, команда додатку My Pocket French Book</p>
+    
+    <p>Welcome! Your code is:</p>
+    <p>${otp}</p>
+    <p>If you did not request a password reset, please ignore this message.</p>
+    <p>Thank you for using our app!</p>
+    <p>Best regards, the My Pocket French Book team</p>`,
+  };
+
+  await sendEmail(verifyEmail);
+
+  user.passwordResetToken = undefined;
+  user.passwordResetTokenExp = undefined;
+
+  res.status(200).json({ message: "Password reset sent by email" });
 });
 
 // export const deleteUser = ctrlWrapper(async (req, res) => {

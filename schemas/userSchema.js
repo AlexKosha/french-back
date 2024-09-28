@@ -10,7 +10,7 @@ export const registerSchema = Joi.object({
     "string.empty": '"email" cannot be an empty field',
     "any.required": 'missing required field "email"',
   }),
-  birthDate: Joi.date().less("now").required().messages({
+  birthDate: Joi.string().messages({
     "date.base": '"birthDate" must be a valid date',
     "date.less": '"birthDate" must be in the past',
     "any.required": 'missing required field "birthDate"',
