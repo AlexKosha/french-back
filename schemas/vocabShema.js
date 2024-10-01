@@ -21,7 +21,11 @@ export const addWorldtoVocabSchema = Joi.object({
   audio: Joi.string()
     .required()
     .label("Audio")
-    .message(errorMessageTemplate("Audio")),
+    .messages(errorMessageTemplate("Audio")),
+  themeId: Joi.string()
+    .required()
+    .label("Id")
+    .messages(errorMessageTemplate("Id")),
 });
 
 export const updateWorld = Joi.object({
@@ -37,4 +41,8 @@ export const updateWorld = Joi.object({
   image: Joi.string().label("Image").messages({
     "string.empty": '"Image" cannot be an empty field',
   }),
+  themeId: Joi.string()
+    .required()
+    .label("Id")
+    .messages(errorMessageTemplate("Id")),
 });
