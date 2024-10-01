@@ -4,7 +4,6 @@ import * as fs from "fs/promises";
 import dotenv from "dotenv";
 import { nanoid } from "nanoid";
 import { UserModel } from "../models/userModel.js";
-// import { HttpError } from "../helpers/index.js";
 
 dotenv.config();
 
