@@ -76,33 +76,6 @@ export const updateUser = ctrlWrapper(async (req, res) => {
     });
     res.status(200).json(updatedUser);
   }
-
-  // if (req.body) {
-  //   const updateUser = await authServices.updateUserDB(_id, {
-  //     name: req.body.name,
-  //     email: req.body.email,
-  //   });
-
-  //   const { name, email, birthDate } = updateUser;
-
-  //   res.status(200).json({
-  //     name,
-  //     email,
-  //     birthDate,
-  //   });
-  // }
-});
-
-export const updateUserTheme = ctrlWrapper(async (req, res) => {
-  const { _id } = req.user;
-  const { theme } = req.body;
-
-  const updateTheme = await authServices.updateThemeDB(_id, theme);
-
-  res.status(200).json({
-    email: updateTheme.email,
-    theme: updateTheme.theme,
-  });
 });
 
 export const updatePassword = ctrlWrapper(async (req, res) => {
@@ -168,9 +141,3 @@ export const forgotPassword = ctrlWrapper(async (req, res) => {
 
   res.status(200).json({ message: "Password reset sent by email" });
 });
-
-// export const deleteUser = ctrlWrapper(async (req, res) => {
-//   await authServices.hideUserDB(req.params.id);
-
-//   res.status(204);
-// });
