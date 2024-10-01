@@ -22,6 +22,10 @@ const vocabShema = new Schema(
       type: String,
       required: true,
     },
+    themeId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
   },
   { versionKey: false, timeseries: true }
 );
