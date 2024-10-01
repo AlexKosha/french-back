@@ -41,13 +41,6 @@ export const updateUserSchema = Joi.object({
   }),
 });
 
-export const updateThemeSchema = Joi.object({
-  theme: Joi.string().required().valid("dark", "light").messages({
-    "string.empty": '"theme" cannot be an empty field',
-    "any.required": 'missing required field "theme"',
-  }),
-});
-
 export const updatePassword = Joi.object({
   password: Joi.string().required().min(6).messages({
     "string.empty": '"password" cannot be an empty field',

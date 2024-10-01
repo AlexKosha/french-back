@@ -56,25 +56,11 @@ export const logoutUserDB = async (_id, token) => {
 };
 
 export const updateUserDB = async (_id, userData) => {
-  // if (userData.password) {
-  //   userData.password = await bcryptjs.hash(userData.password, 10);
-  // }
-
   const updateUser = await UserModel.findByIdAndUpdate(_id, userData, {
     new: true,
   });
 
   return updateUser;
-};
-
-export const updateThemeDB = async (idOwner, theme) => {
-  const updateTheme = await UserModel.findOneAndUpdate(
-    idOwner,
-    { theme },
-    { new: true }
-  );
-
-  return updateTheme;
 };
 
 export const updatePasswordDB = async (_id, password) => {

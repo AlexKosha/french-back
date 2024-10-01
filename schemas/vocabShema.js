@@ -5,19 +5,19 @@ export const addWorldtoVocabSchema = Joi.object({
   world: Joi.string()
     .required()
     .label("World")
-    .message(errorMessageTemplate("World")),
+    .messages(errorMessageTemplate("World")),
   translationEN: Joi.string()
     .required()
     .label("trEN")
-    .message(errorMessageTemplate("trEN")),
+    .messages(errorMessageTemplate("trEN")),
   translationUK: Joi.string()
     .required()
     .label("trUK")
-    .message(errorMessageTemplate("trUK")),
+    .messages(errorMessageTemplate("trUK")),
   image: Joi.string()
     .required()
     .label("Image")
-    .message(errorMessageTemplate("Image")),
+    .messages(errorMessageTemplate("Image")),
   audio: Joi.string()
     .required()
     .label("Audio")
@@ -26,6 +26,7 @@ export const addWorldtoVocabSchema = Joi.object({
     .required()
     .label("Id")
     .messages(errorMessageTemplate("Id")),
+
 });
 
 export const updateWorld = Joi.object({

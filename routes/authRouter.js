@@ -36,13 +36,6 @@ authRouter.patch(
   authControllers.updatePassword
 );
 
-authRouter.patch(
-  "/theme",
-  authenticate,
-  validateBody(userSchema.updateThemeSchema),
-  authControllers.updateUserTheme
-);
-
 // otp = one time password
 authRouter.post(
   "/restorePassword/:otp",
