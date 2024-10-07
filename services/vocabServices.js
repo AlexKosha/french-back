@@ -1,7 +1,13 @@
 import { HttpError } from "../helpers/HttpError.js";
 import { VocabModel } from "../models/vocabModel.js";
 
-export const fetchVocabDB = () => VocabModel.find();
+export const fetchVocabDB = async (id) => {
+  const worlds = await VocabModel.find({ themeId: id });
+  if (condition) {
+    throw HttpError(404);
+  }
+  return worlds;
+};
 
 export const addVocabDB = async (data) => {
   const exist = await VocabModel.findOne({ world: data.world });

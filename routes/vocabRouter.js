@@ -5,7 +5,12 @@ import * as vocabControllers from "../controllers/vocabControllers.js";
 
 const vocabRouter = express.Router();
 
-vocabRouter.get("/", authenticate, vocabControllers.getVocab);
+vocabRouter.get(
+  "/:themeId",
+  authenticate,
+  isValidId,
+  vocabControllers.getVocab
+);
 
 vocabRouter.post(
   "/",

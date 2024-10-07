@@ -2,7 +2,8 @@ import { ctrlWrapper, HttpError } from "../helpers/index.js";
 import * as vocabServices from "../services/vocabServices.js";
 
 export const getVocab = ctrlWrapper(async (req, res) => {
-  const vocab = await vocabServices.fetchVocabDB();
+  const id = req.params.themeId;
+  const vocab = await vocabServices.fetchVocabDB(id);
   res.json(vocab);
 });
 
