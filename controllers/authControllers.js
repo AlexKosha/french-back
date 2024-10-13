@@ -23,6 +23,22 @@ export const registerUser = ctrlWrapper(async (req, res) => {
   });
 });
 
+export const verifyEmail = ctrlWrapper(async (req, res) => {
+  const { verificationToken } = req.params;
+
+  await authServices.verifyEmailDB(verificationToken);
+
+  res.status(200).json({ message: "Verification successful" });
+});
+
+export const resendVerifyEmail = ctrlWrapper(async (req, res) => {
+  const { email } = req.user;
+
+  await authServices.resendVerifyEmailDB(email);
+
+  res.status(200).json({ message: "Verification email sent" });
+});
+
 export const loginUser = ctrlWrapper(async (req, res) => {
   const { email, password } = req.body;
 

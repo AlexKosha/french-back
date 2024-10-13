@@ -19,14 +19,13 @@ export const addWorldtoVocabSchema = Joi.object({
     .label("Image")
     .messages(errorMessageTemplate("Image")),
   audio: Joi.string()
-    .required()
+    // .required()
     .label("Audio")
     .messages(errorMessageTemplate("Audio")),
   themeId: Joi.string()
     .required()
     .label("Id")
     .messages(errorMessageTemplate("Id")),
-
 });
 
 export const updateWorld = Joi.object({

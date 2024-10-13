@@ -3,7 +3,7 @@ import { VocabModel } from "../models/vocabModel.js";
 
 export const fetchVocabDB = async (id) => {
   const worlds = await VocabModel.find({ themeId: id });
-  if (condition) {
+  if (!worlds) {
     throw HttpError(404);
   }
   return worlds;

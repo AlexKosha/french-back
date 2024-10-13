@@ -16,7 +16,7 @@ const userSchema = new Schema(
     },
     birthDate: {
       type: String,
-      // required: [true, "Set birth date for user"],
+      required: [true, "Set birth date for user"],
       // validate: {
       //   validator: validateBirthDate,
       //   message: "Birth date cannot be in the future",
