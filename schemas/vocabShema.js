@@ -41,8 +41,10 @@ export const updateWorld = Joi.object({
   image: Joi.string().label("Image").messages({
     "string.empty": '"Image" cannot be an empty field',
   }),
-  themeId: Joi.string()
-    .required()
-    .label("Id")
-    .messages(errorMessageTemplate("Id")),
+  audio: Joi.string().label("Audio").messages({
+    "string.empty": '"Audio" cannot be an empty field',
+  }),
+  themeId: Joi.string().required().label("Id").messages({
+    "string.empty": '"ThemeId" cannot be an empty field',
+  }),
 });
