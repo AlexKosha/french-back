@@ -34,8 +34,31 @@ export const registerUserDB = async (userData) => {
 
   const verifyEmail = {
     to: user.email,
-    subject: "Verify your email",
-    html: `<a target = "_blank" href ='${BASE_URL}/users/verify/${verificationToken}'>Click here to verify email</a>`,
+    subject: "Підтвердження електронної пошти / Email Verification",
+    // html: `<a target = "_blank" href ='${BASE_URL}/users/verify/${verificationToken}'>Click here to verify email</a>`,
+    html: `
+    <div style="font-family: Arial, sans-serif; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+      <h2 style="color: #67104c; text-align: center;">Підтвердження електронної пошти / Email Verification</h2>
+      
+      <p>Дякуємо за реєстрацію! Щоб завершити процес, будь ласка, підтвердіть свою електронну адресу, натиснувши на посилання нижче:</p>
+      <p>Thank you for registering! To complete the process, please confirm your email address by clicking the link below:</p>
+      
+      <p style="text-align: center; margin: 20px 0;">
+        <a href='${BASE_URL}/users/verify/${verificationToken}' target="_blank" style="background-color: #67104c; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+          Підтвердити електронну пошту / Verify Email
+        </a>
+      </p>
+      
+      <p>Якщо ви не реєструвалися на нашому сайті, просто ігноруйте цей лист.</p>
+      <p>If you did not sign up on our website, please ignore this email.</p>
+      
+      <hr style="border: 0; height: 1px; background-color: #ddd;">
+      
+      <p style="font-size: 0.9em; color: #555; text-align: center;">
+        © 2024 My Pocket French Book. Всі права захищені. / © 2024 My Pocket French Book. All rights reserved.
+      </p>
+    </div>
+  `,
   };
 
   await sendEmail(verifyEmail);

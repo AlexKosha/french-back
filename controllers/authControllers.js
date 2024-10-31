@@ -28,7 +28,66 @@ export const verifyEmail = ctrlWrapper(async (req, res) => {
 
   await authServices.verifyEmailDB(verificationToken);
 
-  res.status(200).json({ message: "Verification successful" });
+  // Відправляємо HTML-сторінку у відповідь
+  res.status(200).send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Email Verified / Підтверджено</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          background-color: #f4f4f9;
+          color: #333;
+        }
+        .container {
+          text-align: center;
+          padding: 20px;
+          max-width: 500px;
+          background: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+          color: #4CAF50;
+        }
+        p {
+          margin: 15px 0;
+        }
+        .button {
+          display: inline-block;
+          margin-top: 20px;
+          padding: 10px 20px;
+          font-size: 16px;
+          color: #fff;
+          background-color: #4CAF50;
+          text-decoration: none;
+          border-radius: 5px;
+        }
+        .button:hover {
+          background-color: #45a049;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>Email Verified Successfully! / Пошта успішно підтверджена!</h1>
+        <p>Thank you for verifying your email address. You can now access all features of our app.</p>
+        <p>Дякуємо за підтвердження вашої електронної пошти. Тепер ви можете користуватися всіма функціями нашого додатка.</p>
+        <p>To modify your email options, please visit the Settings page in your account.</p>
+        <p>Щоб змінити налаштування електронної пошти, відвідайте сторінку Налаштувань у вашому акаунті.</p>
+        <a href="/settings" class="button">Go to Settings / Перейти до Налаштувань</a>
+      </div>
+    </body>
+    </html>
+  `);
 });
 
 export const resendVerifyEmail = ctrlWrapper(async (req, res) => {
