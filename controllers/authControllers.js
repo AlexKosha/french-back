@@ -35,7 +35,7 @@ export const verifyEmail = ctrlWrapper(async (req, res) => {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Email Verified / Підтверджено</title>
+      <title>Email Verified / Електронна пошта Підтверджена</title>
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -50,13 +50,13 @@ export const verifyEmail = ctrlWrapper(async (req, res) => {
         .container {
           text-align: center;
           padding: 20px;
-          max-width: 500px;
+          max-width: 750px;
           background: #ffffff;
           border-radius: 8px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1 {
-          color: #4CAF50;
+        h2 {
+          color: #67104c;
         }
         p {
           margin: 15px 0;
@@ -67,7 +67,7 @@ export const verifyEmail = ctrlWrapper(async (req, res) => {
           padding: 10px 20px;
           font-size: 16px;
           color: #fff;
-          background-color: #4CAF50;
+          background-color: #67104c;
           text-decoration: none;
           border-radius: 5px;
         }
@@ -78,12 +78,16 @@ export const verifyEmail = ctrlWrapper(async (req, res) => {
     </head>
     <body>
       <div class="container">
-        <h1>Email Verified Successfully! / Пошта успішно підтверджена!</h1>
+        <h2>Email Verified Successfully! / Електронна пошта успішно підтверджена!</h2>
         <p>Thank you for verifying your email address. You can now access all features of our app.</p>
-        <p>Дякуємо за підтвердження вашої електронної пошти. Тепер ви можете користуватися всіма функціями нашого додатка.</p>
+        <p>Дякуємо за підтвердження вашої електронної пошти. Тепер ви можете користуватися всіма функціями нашого додатку.</p>
         <p>To modify your email options, please visit the Settings page in your account.</p>
-        <p>Щоб змінити налаштування електронної пошти, відвідайте сторінку Налаштувань у вашому акаунті.</p>
-        <a href="/settings" class="button">Go to Settings / Перейти до Налаштувань</a>
+        <p>Щоб змінити налаштування електронної пошти, перейдіть у сторінку Налаштувань вашого акаунту.</p>
+        <hr style="border: 0; height: 1px; background-color: #ddd;">
+      
+      <p style="font-size: 0.9em; color: #555; text-align: center;">
+        © 2024 My Pocket French Book. Всі права захищені. / © 2024 My Pocket French Book. All rights reserved.
+      </p>
       </div>
     </body>
     </html>

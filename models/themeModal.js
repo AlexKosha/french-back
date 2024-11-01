@@ -6,6 +6,14 @@ const themeShema = new Schema(
       type: String,
       required: true,
     },
+    translationEN: {
+      type: String,
+      required: true,
+    },
+    translationUK: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timeseries: true }
 );

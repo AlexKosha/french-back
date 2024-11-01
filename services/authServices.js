@@ -37,7 +37,7 @@ export const registerUserDB = async (userData) => {
     subject: "Підтвердження електронної пошти / Email Verification",
     // html: `<a target = "_blank" href ='${BASE_URL}/users/verify/${verificationToken}'>Click here to verify email</a>`,
     html: `
-    <div style="font-family: Arial, sans-serif; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+    <div style="font-family: Arial, sans-serif; color: #333; max-width: 750px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
       <h2 style="color: #67104c; text-align: center;">Підтвердження електронної пошти / Email Verification</h2>
       
       <p>Дякуємо за реєстрацію! Щоб завершити процес, будь ласка, підтвердіть свою електронну адресу, натиснувши на посилання нижче:</p>
