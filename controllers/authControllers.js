@@ -19,6 +19,7 @@ export const registerUser = ctrlWrapper(async (req, res) => {
       name,
       email,
       birthDate,
+      croissants: newUser.croissants,
     },
   });
 });
@@ -119,7 +120,7 @@ export const loginUser = ctrlWrapper(async (req, res) => {
 
   const newUser = await authServices.loginUserDB(user._id);
 
-  const { token, name, birthDate } = newUser;
+  const { token, name, birthDate, croissants } = newUser;
 
   res.json({
     token,
@@ -127,13 +128,14 @@ export const loginUser = ctrlWrapper(async (req, res) => {
       name,
       email,
       birthDate,
+      croissants,
     },
   });
 });
 
 export const getCurrentUser = ctrlWrapper(async (req, res) => {
-  const { name, email, birthDate } = req.user;
-  res.json({ name, email, birthDate });
+  const { name, email, birthDate, croissants } = req.user;
+  res.json({ name, email, birthDate, croissants });
 });
 
 export const logoutUser = ctrlWrapper(async (req, res) => {
@@ -219,4 +221,18 @@ export const forgotPassword = ctrlWrapper(async (req, res) => {
   user.passwordResetTokenExp = undefined;
 
   res.status(200).json({ message: "Password reset sent by email" });
+});
+
+export const updateProgressUser = ctrlWrapper(async (req, res) => {
+  const user = req.user;
+
+  if (typeof user.croissants !== "number") {
+    user.croissants = 0;
+  }
+
+  user.croissants += 1;
+
+  await user.save();
+
+  res.status(200).json({ croissants: user.croissants });
 });

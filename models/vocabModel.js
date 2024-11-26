@@ -20,7 +20,7 @@ const vocabShema = new Schema(
     },
     audio: {
       type: String,
-      // required: true,
+      required: true,
     },
     themeId: {
       type: Schema.Types.ObjectId,

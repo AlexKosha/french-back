@@ -32,15 +32,6 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Set password for user"],
     },
-    theme: {
-      type: String,
-      enum: themeList,
-      default: "dark",
-    },
-    avatarURL: {
-      type: String,
-      default: "",
-    },
     token: {
       type: String,
       default: "",
@@ -55,7 +46,12 @@ const userSchema = new Schema(
     },
     passwordResetToken: { type: String },
     passwordResetTokenExp: { type: String },
+    croissants: {
+      type: Number, // Тип Number для зручності роботи з числовими значеннями
+      default: 0, // Початкове значення
+    },
   },
+
   { versionKey: false, timeseries: true }
 );
 

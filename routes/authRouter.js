@@ -53,4 +53,11 @@ authRouter.post(
 );
 
 authRouter.post("/forgotPassword", authControllers.forgotPassword);
+
+authRouter.patch(
+  "/updateProgressUser",
+  authenticate,
+  authControllers.updateProgressUser
+);
+
 export default authRouter;
