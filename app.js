@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import authRouter from "./routes/authRouter.js";
 import vocabRouter from "./routes/vocabRouter.js";
 import themeRouter from "./routes/themeRouter.js";
+import googleSpeechRouter from "./routes/googleSpeechRouter.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/users", authRouter);
 app.use("/vocab", vocabRouter);
 app.use("/theme", themeRouter);
+app.use("/speech-to-text", googleSpeechRouter);
 
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
