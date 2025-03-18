@@ -35,4 +35,12 @@ export const sendSpeech = ctrlWrapper(async (req, res) => {
     .join("\n");
 
   res.json({ transcript });
+
+  fs.unlink(req.file.path, (err) => {
+    if (err) {
+      console.error("❌ Помилка видалення файлу:", err);
+    } else {
+      console.log("🗑️ Тимчасовий файл видалено:", req.file.path);
+    }
+  });
 });
