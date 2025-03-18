@@ -13,16 +13,12 @@ export const convertToWav = (req, res, next) => {
   const inputPath = req.file.path;
   const outputPath = path.join(path.dirname(inputPath), `${Date.now()}.wav`);
 
-  console.log(`🎤 Конвертація: ${inputPath} -> ${outputPath}`);
-
   ffmpeg(inputPath)
     .toFormat("wav")
     .audioCodec("pcm_s16le") // Google Speech API приймає тільки LINEAR16
     .audioChannels(1) // Примусово конвертуємо у МОНО
     .audioFrequency(16000) // Google рекомендує 16000 Hz
     .on("end", () => {
-      console.log("✅ Конвертація завершена:", outputPath);
-
       if (fs.existsSync(inputPath)) {
         fs.unlinkSync(inputPath); // Видаляємо оригінальний файл, якщо він є
       }
@@ -31,7 +27,6 @@ export const convertToWav = (req, res, next) => {
       next();
     })
     .on("error", (err) => {
-      console.error("❌ Помилка конвертації:", err);
       next(err);
     })
     .save(outputPath);

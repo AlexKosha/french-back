@@ -15,8 +15,6 @@ export const sendSpeech = ctrlWrapper(async (req, res) => {
   const audioData = await wav.decode(audioBuffer);
   const sampleRate = audioData.sampleRate; // Отримуємо реальну частоту дискретизації
 
-  console.log(`Detected sample rate: ${sampleRate} Hz`);
-
   const audioBytes = audioBuffer.toString("base64");
 
   // Виклик Google API
