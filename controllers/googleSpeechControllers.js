@@ -23,7 +23,7 @@ export const sendSpeech = ctrlWrapper(async (req, res) => {
     config: {
       encoding: "LINEAR16",
       sampleRateHertz: sampleRate, // Використовуємо реальну частоту дискретизації
-      languageCode: "en-US",
+      languageCode: "fr-FR",
     },
   };
 
