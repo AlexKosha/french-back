@@ -44,6 +44,7 @@ authRouter.patch(
   validateBody(userSchema.updatePassword),
   authControllers.updatePassword
 );
+authRouter.post("/forgotPassword", authControllers.forgotPassword);
 
 // otp = one time password
 authRouter.post(
@@ -51,8 +52,6 @@ authRouter.post(
   validateBody(userSchema.restorePassword),
   authControllers.restorePassword
 );
-
-authRouter.post("/forgotPassword", authControllers.forgotPassword);
 
 authRouter.patch(
   "/updateProgressUser",

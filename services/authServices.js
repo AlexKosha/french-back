@@ -164,5 +164,14 @@ export const restorePasswordDB = async (otp, newPassword, email) => {
   user.passwordResetToken = undefined;
   user.passwordResetTokenExp = undefined;
 
+  const today = new Date().toISOString().split("T")[0];
+
+  if (user.lastPasswordChangeDate === today) {
+    user.passwordChangeCount += 1;
+  } else {
+    user.lastPasswordChangeDate = today;
+    user.passwordChangeCount = 1;
+  }
+
   await user.save();
 };

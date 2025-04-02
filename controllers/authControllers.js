@@ -195,6 +195,15 @@ export const forgotPassword = ctrlWrapper(async (req, res) => {
     throw HttpError(400, "User not exist");
   }
 
+  const today = new Date().toISOString().split("T")[0];
+
+  if (
+    user.lastPasswordChangeDate === tomorrowStr &&
+    user.passwordChangeCount >= 2
+  ) {
+    throw HttpError(429, "You can only change password twice per day.");
+  }
+
   const otp = user.createPasswordResetToken();
   await user.save();
 

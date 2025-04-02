@@ -44,6 +44,8 @@ const userSchema = new Schema(
       type: String,
       require: [true, "Verify token is required"],
     },
+    passwordChangeCount: { type: Number, default: 0 }, // Лічильник змін пароля
+    lastPasswordChangeDate: { type: String, default: "" }, // Дата останньої зміни
     passwordResetToken: { type: String },
     passwordResetTokenExp: { type: String },
     croissants: {
