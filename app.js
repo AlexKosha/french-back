@@ -6,6 +6,7 @@ import authRouter from "./routes/authRouter.js";
 import vocabRouter from "./routes/vocabRouter.js";
 import themeRouter from "./routes/themeRouter.js";
 import googleSpeechRouter from "./routes/googleSpeechRouter.js";
+import verbRouter from "./routes/verbRouter.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/users", authRouter);
 app.use("/vocab", vocabRouter);
 app.use("/theme", themeRouter);
+app.use("/verb", verbRouter);
 app.use("/speech-to-text", googleSpeechRouter);
 
 app.use((_, res) => {
