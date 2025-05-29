@@ -9,6 +9,10 @@ const ConjugationSchema = new Schema({
     type: String,
     required: true,
   },
+  ending: {
+    type: String,
+    required: true, // можна true, якщо закінчення обов'язкове
+  },
 });
 
 const TenseSchema = new Schema({

@@ -3,6 +3,7 @@ import Joi from "joi";
 const conjugationSchema = Joi.object({
   pronoun: Joi.string().required(),
   form: Joi.string().required(),
+  ending: Joi.string().required(),
 });
 
 const tenseSchema = Joi.object({
