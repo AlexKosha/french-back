@@ -49,6 +49,14 @@ const VerbSchema = new Schema(
       type: String,
       required: [true, "English translation is required"],
     },
+    group: {
+      type: String,
+      required: [true, "Group is required"],
+    },
+    frequent: {
+      type: Boolean,
+      default: false,
+    },
     tenses: {
       type: [TenseSchema],
       required: true,

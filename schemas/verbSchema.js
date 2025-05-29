@@ -19,5 +19,7 @@ export const addVerbSchema = Joi.object({
   infinitive: Joi.string().required(),
   translationUA: Joi.string().required(),
   translationEN: Joi.string().required(),
+  group: Joi.string().required(),
+  frequent: Joi.boolean().default(false),
   tenses: Joi.array().items(tenseSchema).min(1).required(),
 });
