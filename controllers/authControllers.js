@@ -16,6 +16,7 @@ export const registerUser = ctrlWrapper(async (req, res) => {
   res.status(201).json({
     token: newUser.token,
     user: {
+      id: newUser._id,
       name,
       email,
       birthDate,
@@ -125,6 +126,7 @@ export const loginUser = ctrlWrapper(async (req, res) => {
   res.json({
     token,
     user: {
+      id: newUser._id,
       name,
       email,
       birthDate,
@@ -134,8 +136,8 @@ export const loginUser = ctrlWrapper(async (req, res) => {
 });
 
 export const getCurrentUser = ctrlWrapper(async (req, res) => {
-  const { name, email, birthDate, croissants } = req.user;
-  res.json({ name, email, birthDate, croissants });
+  const { name, email, birthDate, croissants, _id } = req.user;
+  res.json({ name, email, birthDate, croissants, id: _id });
 });
 
 export const logoutUser = ctrlWrapper(async (req, res) => {

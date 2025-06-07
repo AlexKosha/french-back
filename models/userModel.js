@@ -3,7 +3,6 @@ import bcryptjs from "bcryptjs";
 import { nanoid } from "nanoid";
 
 const emailRegex = new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-const themeList = ["dark", "light"];
 const validateBirthDate = (value) => {
   return value <= new Date();
 };

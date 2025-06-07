@@ -7,6 +7,7 @@ import vocabRouter from "./routes/vocabRouter.js";
 import themeRouter from "./routes/themeRouter.js";
 import googleSpeechRouter from "./routes/googleSpeechRouter.js";
 import verbRouter from "./routes/verbRouter.js";
+import progressRouter from "./routes/progressRouter.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use("/vocab", vocabRouter);
 app.use("/theme", themeRouter);
 app.use("/verb", verbRouter);
 app.use("/speech-to-text", googleSpeechRouter);
+app.use("/progress", progressRouter);
 
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
