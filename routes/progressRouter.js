@@ -13,5 +13,11 @@ progressRouter.post(
   validateBody(addProgressSchema),
   progressControllers.addProgress
 );
+progressRouter.patch(
+  "/",
+  authenticate,
+  validateBody(addProgressSchema),
+  progressControllers.updateProgressThemes
+);
 
 export default progressRouter;
