@@ -10,10 +10,13 @@ const WordSchema = new Schema({
   completed: [Number],
 });
 
-const TopicProgressSchema = new Schema({
-  updatedAt: Number,
-  words: [WordSchema],
-});
+const TopicProgressSchema = new Schema(
+  {
+    updatedAt: Number,
+    words: [WordSchema],
+  },
+  { _id: false }
+);
 
 const ProgressSchema = new Schema(
   {
