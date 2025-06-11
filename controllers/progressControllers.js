@@ -10,17 +10,16 @@ export const addProgress = ctrlWrapper(async (req, res) => {
   const { userId, progress } = req.body;
   const ownerId = req.user.id || req.user._id; // авторизований користувач із токена
 
-  const ifProgressExist = await progressServices.userProgressUnique(userId);
-
-  if (ifProgressExist) {
-    throw HttpError(409, "Progress for such user already in use");
-  }
-
   if (userId !== ownerId.toString()) {
     throw HttpError(
       403,
       "Access denied. You can update only your own progress."
     );
+  }
+
+  const existing = await progressServices.userProgressUnique(userId);
+  if (existing) {
+    await progressServices.deleteProgress(userId); // ⬅️ Реалізуй цю функцію в services
   }
 
   const addProgress = await progressServices.addProgressDB(userId, progress);

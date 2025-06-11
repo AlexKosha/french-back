@@ -1,7 +1,7 @@
 import { ProgressModel } from "../models/progressModal.js";
 
 export const userProgressUnique = async (userId) =>
-  await ProgressModel.findOne({ userId });
+  await ProgressModel.findOne({ userId }, { _id: 0 });
 
 export const addProgressDB = (userId, progress) => {
   const newProgress = ProgressModel.create({ userId, progress });
@@ -15,4 +15,8 @@ export const updateProgressThemesDB = async (userId, progress) => {
     { $set: { progress } },
     { new: true }
   );
+};
+
+export const deleteProgress = async (userId) => {
+  return await ProgressModel.deleteOne({ userId });
 };
