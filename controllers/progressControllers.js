@@ -24,8 +24,10 @@ export const addProgress = ctrlWrapper(async (req, res) => {
 
   const addProgress = await progressServices.addProgressDB(userId, progress);
 
+  const { _id, ...progressWithoutId } = addProgress;
+
   res.status(200).json({
-    progress: addProgress,
+    progress: progressWithoutId,
   });
 });
 
@@ -48,7 +50,10 @@ export const updateProgressThemes = ctrlWrapper(async (req, res) => {
       userId,
       incomingProgress
     );
-    return res.status(201).json(newProgress);
+
+    const { _id, ...progressWithoutId } = addProgress;
+
+    return res.status(201).json(progressWithoutId);
   }
 
   // Очистити від Mongoose-метаданих
