@@ -26,9 +26,7 @@ export const addProgress = ctrlWrapper(async (req, res) => {
 
   const { _id, ...progressWithoutId } = addProgress;
 
-  res.status(200).json({
-    progress: progressWithoutId,
-  });
+  res.status(200).json(progressWithoutId);
 });
 
 export const updateProgressThemes = ctrlWrapper(async (req, res) => {
